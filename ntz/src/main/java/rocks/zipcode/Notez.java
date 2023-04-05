@@ -54,7 +54,7 @@ public final class Notez {
                 ntzEngine.forgetNote(argv[1], Integer.parseInt(argv[2]) -1);
 
             } else if (argv[0].equals("-e")) {
-
+                ntzEngine.editNote(argv[1], Integer.parseInt(argv[2]) -1, argv[3]);
             }
 
             // this should give you an idea about how to TEST the Notez engine
@@ -88,6 +88,15 @@ public final class Notez {
             System.out.println("learn to read.");
         }
     }
+
+    private void editNote(String category, int index, String newMessage) {
+        if (filemap.containsKey(category) && filemap.get(category).size() > index) {
+            filemap.get(category).set(index, newMessage);
+
+            }
+
+    }
+
 
     private void saveDatabase() {
         filemap.save();
