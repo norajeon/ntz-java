@@ -51,7 +51,7 @@ public final class Notez {
                 ntzEngine.addToCategory(argv[1], argv);
 
             } else if (argv[0].equals("-f")) {
-
+                ntzEngine.forgetNote(argv[1], Integer.parseInt(argv[2]) -1);
 
             } else if (argv[0].equals("-e")) {
 
@@ -78,10 +78,14 @@ public final class Notez {
 
     }
 
-    private void remove(String[] argv) {
-        if (filemap.containsValue(argv)) {
-
-
+    private void forgetNote(String category, int index) {
+        if (filemap.containsKey(category) && filemap.get(category).size() > index) {
+            filemap.get(category).remove(index);
+            if (filemap.get(category).size() == 0) {
+                filemap.remove(category);
+            }
+        } else {
+            System.out.println("learn to read.");
         }
     }
 
